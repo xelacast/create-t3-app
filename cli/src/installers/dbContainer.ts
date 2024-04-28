@@ -17,7 +17,7 @@ export const dbContainerInstaller: Installer = ({
   const scriptText = fs.readFileSync(scriptSrc, "utf-8");
   const scriptDest = path.join(projectDir, "start-database.sh");
 
-  // for configuration with postgresql and mysql when project is created with '.' project name
+  // ProjectName configuration when project is created with '.' project name
   const [projectNameParsed] =
     projectName == "." ? parseNameAndPath(projectDir) : [projectName];
 
