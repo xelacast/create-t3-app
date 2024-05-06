@@ -174,6 +174,7 @@ export const runCli = async (): Promise<CliResults> => {
   }
 
   cliResults.flags = program.opts();
+  const dbProvider = cliResults.flags.dbProvider;
 
   /** @internal Used for CI E2E tests. */
   if (cliResults.flags.CI) {
@@ -205,7 +206,7 @@ export const runCli = async (): Promise<CliResults> => {
       cliResults.packages.includes("drizzle") ||
       cliResults.packages.includes("prisma")
     ) {
-      cliResults.databaseProvider = cliResults.flags.dbProvider;
+      cliResults.databaseProvider = dbProvider;
     } else {
       cliResults.databaseProvider = "sqlite";
     }
