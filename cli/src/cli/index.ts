@@ -199,11 +199,9 @@ export const runCli = async (): Promise<CliResults> => {
       process.exit(0);
     }
 
-    cliResults.databaseProvider =
-      cliResults.packages.includes("drizzle") ||
-      cliResults.packages.includes("prisma")
-        ? cliResults.flags.dbProvider
-        : "sqlite";
+    cliResults.databaseProvider = cliResults.packages.includes("drizzle")
+      ? cliResults.flags.dbProvider
+      : "sqlite";
 
     return cliResults;
   }
