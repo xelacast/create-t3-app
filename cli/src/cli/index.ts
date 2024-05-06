@@ -174,7 +174,8 @@ export const runCli = async (): Promise<CliResults> => {
   }
 
   cliResults.flags = program.opts();
-  const dbProvider = cliResults.flags.dbProvider;
+  // const dbProvider = cliResults.flags.dbProvider; // shallow copy
+  const { dbProvider } = { ...cliResults.flags }; // deep copy
 
   /** @internal Used for CI E2E tests. */
   if (cliResults.flags.CI) {
@@ -205,8 +206,8 @@ export const runCli = async (): Promise<CliResults> => {
       cliResults.packages.includes("drizzle") ||
       cliResults.packages.includes("prisma")
     ) {
-      console.log("cliResults.flags.dbProvider", cliResults.flags.dbProvider);
-      cliResults.databaseProvider = cliResults.flags.dbProvider;
+      console.log("cliResults.flags.dbProvider", dbProvider);
+      cliResults.databaseProvider = dbProvider; // assignment was weird
     } else {
       cliResults.databaseProvider = "sqlite";
     }

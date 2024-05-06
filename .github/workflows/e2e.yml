@@ -47,7 +47,7 @@ jobs:
           echo "continue=${{ (matrix.prisma == 'false' || matrix.drizzle == 'false') && (matrix.drizzle == 'true' || matrix.prisma == 'true' || matrix.dbProvider == 'sqlite') }}" >> $GITHUB_OUTPUT
 
       - uses: ./.github/actions/setup
-        if: ${{ steps.matrix-valid.outputs.continue == 'true' }}
+        if: ${{ steps.matrix-valid.outputs.continue == 'true' }}
 
       - run: pnpm turbo --filter=create-t3-app build
         if: ${{ steps.matrix-valid.outputs.continue == 'true' }}
