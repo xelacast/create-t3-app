@@ -192,6 +192,13 @@ export const runCli = async (): Promise<CliResults> => {
       process.exit(0);
     }
 
+    if (databaseProviders.includes(cliResults.flags.dbProvider) === false) {
+      logger.warn(
+        `Incompatible database provided. Use: ${databaseProviders.join(", ")}. Exiting.`
+      );
+      process.exit(0);
+    }
+
     cliResults.databaseProvider = cliResults.packages.includes("drizzle")
       ? "planetscale"
       : "sqlite";
