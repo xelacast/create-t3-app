@@ -184,7 +184,7 @@ export const runCli = async (): Promise<CliResults> => {
     if (cliResults.flags.prisma) cliResults.packages.push("prisma");
     if (cliResults.flags.drizzle) cliResults.packages.push("drizzle");
     if (cliResults.flags.nextAuth) cliResults.packages.push("nextAuth");
-
+    if (cliResults.flags.dbProvider) cliResults.packages.push("dbContainer");
     if (cliResults.flags.prisma && cliResults.flags.drizzle) {
       // We test a matrix of all possible combination of packages in CI. Checking for impossible
       // combinations here and exiting gracefully is easier than changing the CI matrix to exclude
